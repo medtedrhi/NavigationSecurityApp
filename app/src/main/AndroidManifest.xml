@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Root manifest declares the application package metadata and Android components. -->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Allows SystemEventReceiver to receive BOOT_COMPLETED after the device starts. -->
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <!-- Allows the notification PendingIntent demo to post notifications on Android 13 and newer. -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+
+    <!-- Application container defines app-wide icon, label, and component declarations. -->
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_notification"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.NavigationSecurityApp">
+
+        <!-- MainActivity is exported because launcher activities must be reachable by Android. -->
+        <!-- launchMode singleTop lets onNewIntent() receive repeat launches when this activity is already on top. -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:launchMode="singleTop">
+            <!-- Launcher filter makes this activity the first screen shown from the app icon. -->
+            <intent-filter>
+                <!-- MAIN marks the app entry point. -->
+                <action android:name="android.intent.action.MAIN" />
+                <!-- LAUNCHER places the app in the device launcher. -->
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- DetailActivity is exported only because it intentionally handles verified HTTPS App Links. -->
+        <activity
+            android:name=".DetailActivity"
+            android:exported="true">
+            <!-- App Link filter demonstrates HTTPS deep linking into a specific item detail screen. -->
+            <intent-filter android:autoVerify="true">
+                <!-- VIEW allows browsers and other apps to request display of the URL. -->
+                <action android:name="android.intent.action.VIEW" />
+                <!-- DEFAULT lets the activity receive implicit intents from Android resolution. -->
+                <category android:name="android.intent.category.DEFAULT" />
+                <!-- BROWSABLE allows links from web browsers to open this activity. -->
+                <category android:name="android.intent.category.BROWSABLE" />
+                <!-- HTTPS host/path restricts the exposed link surface to example.com/items/*. -->
+                <data
+                    android:scheme="https"
+                    android:host="example.com"
+                    android:pathPattern="/items/.*" />
+            </intent-filter>
+        </activity>
+
+        <!-- SecureActivity is private because it handles sensitive SECURE_DATA for this app only. -->
+        <activity
+            android:name=".SecureActivity"
+            android:exported="false" />
+
+        <!-- CustomActionActivity is exported intentionally to demonstrate a public custom action and URI scheme. -->
+        <activity
+            android:name=".CustomActionActivity"
+            android:exported="true">
+            <!-- Custom filter shows how an exposed activity can be invoked by action name or navsec:// URI. -->
+            <intent-filter>
+                <!-- Custom public action used for educational implicit navigation. -->
+                <action android:name="com.example.navigationsecurityapp.CUSTOM_VIEW" />
+                <!-- DEFAULT is required for most implicit activity launches. -->
+                <category android:name="android.intent.category.DEFAULT" />
+                <!-- BROWSABLE permits navsec:// links to open from external contexts. -->
+                <category android:name="android.intent.category.BROWSABLE" />
+                <!-- Custom URI scheme demonstrates non-HTTP deep links. -->
+                <data android:scheme="navsec" />
+            </intent-filter>
+        </activity>
+
+        <!-- SecurityReportActivity is private because it exposes internal security analysis details. -->
+        <activity
+            android:name=".SecurityReportActivity"
+            android:exported="false" />
+
+        <!-- BackgroundService is private because internal work should not be triggered by outside apps. -->
+        <service
+            android:name=".BackgroundService"
+            android:exported="false" />
+
+        <!-- SecureService is private because sensitive service operations require internal-only access. -->
+        <service
+            android:name=".SecureService"
+            android:exported="false" />
+
+        <!-- Receiver is exported only because BOOT_COMPLETED is a system broadcast from outside the app. -->
+        <receiver
+            android:name=".SystemEventReceiver"
+            android:exported="true">
+            <!-- Receiver filter lists system and custom broadcasts this educational receiver can process. -->
+            <intent-filter>
+                <!-- BOOT_COMPLETED lets the app react after device startup. -->
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <!-- Custom broadcast action demonstrates receiver exposure and logging. -->
+                <action android:name="com.example.navigationsecurityapp.CUSTOM_ACTION" />
+            </intent-filter>
+        </receiver>
+
+    </application>
+
+</manifest>

@@ -1,0 +1,11 @@
+<resources>
+    <!-- AppCompat theme provides Material-compatible widgets while keeping the sample simple. -->
+    <style name="Theme.NavigationSecurityApp" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Primary color gives the app a consistent toolbar/status identity. -->
+        <item name="colorPrimary">#0B6E69</item>
+        <!-- Dark primary color is used by the status bar on supported versions. -->
+        <item name="colorPrimaryDark">#084C49</item>
+        <!-- Accent color highlights focused controls and interactive elements. -->
+        <item name="colorAccent">#C7502B</item>
+    </style>
+</resources>

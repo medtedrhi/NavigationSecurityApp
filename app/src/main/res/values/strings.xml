@@ -1,0 +1,4 @@
+<resources>
+    <!-- Defines the visible application name used by the launcher and system UI. -->
+    <string name="app_name">NavigationSecurityApp</string>
+</resources>

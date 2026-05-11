@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- ScrollView keeps all lesson buttons reachable on small screens. -->
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <!-- ConstraintLayout arranges the form and many buttons with simple vertical constraints. -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="20dp">
+
+        <!-- Title tells learners this is the main navigation and security lab. -->
+        <TextView
+            android:id="@+id/textViewMainTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Navigation Security App"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- Input field provides the item ID used by explicit intents, implicit intents, and notifications. -->
+        <EditText
+            android:id="@+id/editTextItemId"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:hint="Item ID"
+            android:inputType="text"
+            android:minHeight="48dp"
+            android:text="42"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textViewMainTitle" />
+
+        <!-- Button starts DetailActivity with an explicit intent to demonstrate safe internal navigation. -->
+        <Button
+            android:id="@+id/buttonExplicitIntent"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="Explicit Intent to Detail"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/editTextItemId" />
+
+        <!-- Button opens an HTTPS URL with resolveActivity() to demonstrate implicit intent safety. -->
+        <Button
+            android:id="@+id/buttonImplicitIntent"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Implicit Intent HTTPS Link"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/buttonExplicitIntent" />
+
+        <!-- Button relaunches MainActivity so launchMode singleTop can trigger onNewIntent(). -->
+        <Button
+            android:id="@+id/buttonSingleTop"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="singleTop BackStack Test"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/buttonImplicitIntent" />
+
+        <!-- Button starts the non-exported BackgroundService with an explicit intent. -->
+        <Button
+            android:id="@+id/buttonStartService"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Start BackgroundService"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/buttonSingleTop" />
+
+        <!-- Button posts a notification that opens DetailActivity through an immutable PendingIntent. -->
+        <Button
+            android:id="@+id/buttonShowNotification"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Show PendingIntent Notification"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/buttonStartService" />
+
+        <!-- Button fires an immutable PendingIntent targeting a private secure activity. -->
+        <Button
+            android:id="@+id/buttonSecurePendingIntent"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Secure PendingIntent Demo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/buttonShowNotification" />
+
+        <!-- Button launches the exported custom action activity with a navsec:// URI. -->
+        <Button
+            android:id="@+id/buttonCustomAction"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Open Custom Action Activity"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/buttonSecurePendingIntent" />
+
+        <!-- Button opens the internal security report activity. -->
+        <Button
+            android:id="@+id/buttonSecurityReport"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Open Security Report"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/buttonCustomAction" />
+
+        <!-- Button opens the non-exported SecureActivity with private data. -->
+        <Button
+            android:id="@+id/buttonSecureActivity"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="20dp"
+            android:text="Open SecureActivity"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/buttonSecurityReport" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

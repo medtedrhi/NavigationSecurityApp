@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- ConstraintLayout displays custom action launch details in a compact lesson screen. -->
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp">
+
+    <!-- Title identifies the exported custom-action destination. -->
+    <TextView
+        android:id="@+id/textViewCustomTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="CustomActionActivity"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- TextView shows the action, URI data, and extras that reached this exported component. -->
+    <TextView
+        android:id="@+id/textViewCustomActionInfo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="Custom action info"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textViewCustomTitle" />
+
+    <!-- Retour button finishes this screen and returns through the BackStack. -->
+    <Button
+        android:id="@+id/buttonCustomBack"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="Retour"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textViewCustomActionInfo" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
