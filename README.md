@@ -17,3 +17,7 @@ Replace `SHA256_FINGERPRINT_OF_YOUR_APP_SIGNING_CERTIFICATE` with the real SHA-2
 ## Important
 
 Do not execute Gradle commands for this setup task. The project files are intended to be opened in Android Studio.
+
+
+<img width="448" height="870" alt="Capture d&#39;écran 2026-05-11 210622" src="https://github.com/user-attachments/assets/ea1396f1-57bd-4002-a237-f79afc4fd9a3" />
+<img width="433" height="850" alt="Capture d&#39;écran 2026-05-11 210629" src="https://github.com/user-attachments/assets/cd4d9a32-3d84-45f6-9912-662bdd60b408" />
